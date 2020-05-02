@@ -32,9 +32,9 @@ def spoof_packet(packet):
 
 
 parser=argparse.ArgumentParser()
-parser.add_argument("-s","--spoof",dest="source_web_page",help="Specify an website to spoof [case sensitive]")
-parser.add_argument("-r","--redirect",dest="dest_web_page",help="Specify an website to redirect the user")
-parser.add_argument("-c","--chain",dest="chain", choices=['I/O', 'FORWARD'], help="iptable chain")
+parser.add_argument("-s","--spoof",dest="source_web_page",help="Specify an website to spoof [case sensitive]", required=True)
+parser.add_argument("-r","--redirect",dest="dest_web_page",help="Specify an website to redirect the user", required=True)
+parser.add_argument("-c","--chain",dest="chain", choices=['I/O', 'FORWARD'], help="iptable chain", required=True)
 parser.add_argument("-q","--queue-num",dest="queue_num",help="iptables queue number", default=0, type=int)
 options = parser.parse_args()
 
