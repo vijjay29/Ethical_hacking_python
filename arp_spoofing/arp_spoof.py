@@ -36,26 +36,16 @@ def restore(destination_ip,source_ip):
 def port_forwarding(enable=0):
     try:
         with open('/proc/sys/net/ipv4/ip_forward', 'w') as fWrite:
-            fWrite.write(str(val))
+            fWrite.write(str(enable))
     except Exception as _err:
         return False
     return True
 
 
 parser=argparse.ArgumentParser()    
-parser.add_argument("-t","--target-ip",dest="victim",help="Specify Victim IP addres")
-parser.add_argument("-s","--spoof-ip",dest="spoof",help="Specify Spoofing IP addres")
+parser.add_argument("-t","--target-ip",dest="victim",help="Specify Victim IP addres", required=True)
+parser.add_argument("-s","--spoof-ip",dest="spoof",help="Specify Spoofing IP addres", required=True)
 options = parser.parse_args()
-
-if not options.victim:
-    parser.error("[-] Specify an IP Address for victim --help for more details")
-    print (parser.print_help())
-    exit()
-
-if not options.spoof:
-    parser.error("[-] Specify an IP Address for spoofing --help for more details")
-    print (parser.print_help())
-    exit()
 
 target_ip = options.victim
 gateway_ip = options.spoof
