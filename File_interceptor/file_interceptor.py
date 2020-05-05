@@ -40,8 +40,8 @@ def spoof_packet(packet):
 
 
 parser=argparse.ArgumentParser(description="HTTP File interceptor")
-parser.add_argument("-s","--spoof",dest="source_file",help="Specify an source file to spoof [case sensitive]", required=True)
-parser.add_argument("-r","--redirect",dest="dest_file",help="Specify an destination file to be served", required=True)
+parser.add_argument("-s","--source-file",dest="source_file",help="Specify an source file to spoof [case sensitive]", required=True)
+parser.add_argument("-r","--destination-file",dest="dest_file",help="Specify an destination file to be served (url)", required=True)
 parser.add_argument("-c","--chain",dest="chain", choices=['I/O', 'FORWARD'], help="iptable chain", required=True)
 parser.add_argument("-q","--queue-num",dest="queue_num",help="iptables queue number", default=0, type=int)
 options = parser.parse_args()
